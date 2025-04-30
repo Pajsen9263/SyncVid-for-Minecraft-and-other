@@ -1,21 +1,21 @@
 // /public/js/main-i18n.js
 
-// on utilise le back-end pour charger /locales/{{lng}}/translation.json
+// We use the backend to load /locales/{{lng}}/translation.json
 i18next
   .use(i18nextHttpBackend)
   .init({
-    fallbackLng: 'fr',
+    fallbackLng: 'en',
     debug: true,
     backend: {
       loadPath: '/locales/{{lng}}/translation.json'
     }
   }, function(err, t) {
-    // une fois initialisé, on localise tout le DOM
+    // once initialized, we localize the entire DOM
     jqueryI18next.init(i18next, $, { useOptionsAttr: true });
     $('body').localize();
   });
 
-// gestion du changement de langue
+// language change management
 $('#languageSwitcher').on('change', function() {
   const newLang = $(this).val();
   i18next.changeLanguage(newLang, () => {

@@ -147,7 +147,7 @@ function toggleDisplay(id, visible) {
     };
     frame.style.left = '0%'; frame.style.top = '0%'; frame.style.width = '0%'; frame.style.height = '0%';
   }
-  // Envoi explicite de la mise à jour
+// Explicitly send the update
   sendFrameUpdate(frame);
 }
 
@@ -263,15 +263,15 @@ $(document).ready(function() {
   $('#languageSwitcher').on('change', function() {
     const selectedLang = $(this).val();
     
-    // Demander à i18next de changer de langue
+    // Get i18next to change language
     i18next.changeLanguage(selectedLang, function(err, t) {
       if (err) {
-        console.error('Erreur lors du changement de langue', err);
+        console.error('Error changing language', err);
       } else {
-        // Re-traduire tout le DOM
+        // Re-translate the entire DOM
         $('body').localize();
 
-        // Afficher un message sympa
+        // Show a nice message
         let message = '';
         switch (selectedLang) {
           case 'fr':
@@ -291,7 +291,7 @@ $(document).ready(function() {
   });
 });
 
-// Affichage toast (optionnel)
+// Toast display (optional)
 function showToast(message) {
   const toastHTML = `
     <div class="toast align-items-center text-white bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true" style="position: absolute; top: 4rem; right: 1rem; z-index: 9999;">

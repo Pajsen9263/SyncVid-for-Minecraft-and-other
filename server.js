@@ -28,7 +28,7 @@ app.post('/upload', upload.single('video'), (req, res) => {
   const orig = req.file.originalname;
   const ext = path.extname(orig).toLowerCase();
   if (ext !== '.webm' || req.file.mimetype !== 'video/webm') {
-    fs.unlink(temp, () => res.status(400).json({ error: 'Seuls les WebM sont autorisés.' }));
+    fs.unlink(temp, () => res.status(400).json({ error: 'Only WebM is allowed.' }));
     return;
   }
   const dest = path.join(videosDir, orig);
@@ -47,8 +47,8 @@ app.get('/videos/list', (req, res) => {
 });
 
 // Pages
-app.get('/control', (req, res) => res.sendFile(path.join(__dirname, 'public/control.html')));
-app.get('/display/:id', (req, res) => res.sendFile(path.join(__dirname, 'public/display.html')));
+app.get('/control', (req, res) => res.sendFile(path.join(__dirname, 'views/control.html')));
+app.get('/display/:id', (req, res) => res.sendFile(path.join(__dirname, 'views/display.html')));
 
 // local translation
 app.get('/locales/:lng/translation.json', (req, res) => {
@@ -93,4 +93,4 @@ io.on('connection', socket => {
   });
 });
 
-server.listen(3000, () => console.log('Listening on 3000'));
+server.listen(3000, () => console.log('Listening on http://localhost:3000'));
