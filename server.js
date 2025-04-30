@@ -7,7 +7,10 @@ const fs = require('fs');
 const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
 const ffmpeg = require('fluent-ffmpeg');
 const ffprobe = require('ffprobe');
+const config = require('./config.js')
+
 ffmpeg.setFfmpegPath(ffmpegPath);
+
 
 // Détection si l'application est exécutée depuis un binaire pkg
 const isPkg = typeof process.pkg !== 'undefined';
@@ -205,4 +208,4 @@ io.on('connection', socket => {
   });
 });
 
-server.listen(3000, () => console.log('Listening on http://localhost:3000'));
+server.listen(config.port, () => console.log('Listening on http://localhost:' + config.port));
